@@ -1,0 +1,186 @@
+/*
+ * libmm-streamrecorder
+ *
+ * Copyright (c) 2000 - 2013 Samsung Electronics Co., Ltd. All rights reserved.
+ *
+ * Contact: Hyuntae Kim <ht1211.kim@samsung.com>
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
+#ifndef __MM_STREAMRECORDER_INI_H__
+#define __MM_STREAMRECORDER_INI_H__
+
+#include <glib.h>
+#include "mm_debug.h"
+#include "mm_streamrecorder.h"
+#include "mm_streamrecorder_util.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#define MM_STREAMRECORDER_INI_DEFAULT_PATH	"/usr/etc/mmfw_streamrecorder.ini"
+
+#define STREAMRECORDER_INI_MAX_STRLEN	256
+#define STREAMRECORDER_INI_MAX_ELEMENT	10
+
+typedef struct __mm_streamrecorder_ini {
+	/* general */
+	gboolean encsink_src_islive;
+	guint retrial_count;
+	guint minimum_frame;
+	guint convert_output_buffer_num;
+	guint reset_pause_time;
+	guint screen_record;
+
+	/*encodebin */
+	guint encsink_bin_profile;
+	gboolean encsink_bin_auto_audio_resample;
+	gboolean encsink_bin_auto_colorspace;
+	gboolean encsink_bin_auto_audio_convert;
+	gboolean encsink_bin_use_video_toggle;
+
+	/* pipeline */
+	gchar name_of_encsink_src[STREAMRECORDER_INI_MAX_STRLEN];
+	gchar name_of_audio_src[STREAMRECORDER_INI_MAX_STRLEN];
+	gchar h264_video_encoder[STREAMRECORDER_INI_MAX_STRLEN];
+	gchar h263_video_encoder[STREAMRECORDER_INI_MAX_STRLEN];
+	gchar mpeg4_video_encoder[STREAMRECORDER_INI_MAX_STRLEN];
+	gchar name_of_encsink_bin_audio_encoder[STREAMRECORDER_INI_MAX_STRLEN];
+	gchar name_of_encsink_bin_video_converter[STREAMRECORDER_INI_MAX_STRLEN];
+	gchar encsink_bin_use_parser[STREAMRECORDER_INI_MAX_STRLEN];
+	gchar name_of_encsink_bin_3GPMUXER[STREAMRECORDER_INI_MAX_STRLEN];
+	gchar name_of_encsink_bin_MP4MUXER[STREAMRECORDER_INI_MAX_STRLEN];
+	gchar name_of_encsink_sink[STREAMRECORDER_INI_MAX_STRLEN];
+
+	/* audio parameter */
+	guint audio_frame_minimum_space;
+	guint audio_frame_wait_time;
+
+	/* video parameter */
+	guint video_frame_wait_time;
+
+} mm_streamrecorder_ini_t;
+
+/*Default sink ini values*/
+/* General*/
+#define DEFAULT_ENCSINK_SRC_IS_LIVE  FALSE
+#define DEFAULT_RETRIAL_COUNT 10
+#define DEFAULT_MINIMUM_FRAME  5
+#define DEFAULT_CONVERT_OUTPUT_BUFFER_NUM 6
+#define DEFAULT_RESET_PAUSE_TIME 0
+#define DEFAULT_SCREEN_RECORD 1
+
+/*encodebin*/
+#define DEFAULT_ENCSINK_BIN_PROFILE 0
+#define DEFAULT_ENCSINK_BIN_AUTO_AUDIO_RESAMPLE FALSE
+#define DEFAULT_ENCSINK_BIN_AUTO_COLORSPACE TRUE
+#define DEFAULT_ENCSINK_BIN_AUTO_CONVERT TRUE
+#define DEFAULT_ENCSINK_BIN_USE_VIDEO_TOGGLE FALSE
+
+/* Pipeline */
+#define DEFAULT_VIDEO_SOURCE "appsrc"
+#define DEFAULT_AUDIO_SRC "pulsesrc"
+#define DEFAULT_NAME_OF_H264_VIDEO_ENCODER "omx_h264enc"
+#define DEFAULT_NAME_OF_H263_VIDEO_ENCODER "avenc_h263p"
+#define DEFAULT_NAME_OF_MPEG4_VIDEO_ENCODER "avenc_mpeg4"
+#define DEFAULT_NAME_OF_AUDIO_ENCODER "avenc_aac"
+#define DEFAULT_USE_PARSER ""
+#define DEFAULT_NAME_OF_3GP_MUXER "avmux_3gp"
+#define DEFAULT_NAME_OF_MP4_MUXER "avmux_mp4"
+#define DEFAULT_NAME_OF_VIDEO_CONVERTER "videoconvet"
+#define DEFAULT_NAME_OF_BIN_SINK "filesink"
+
+/*audio param*/
+#define DEFAULT_AUDIO_FRAME_MINIMUM_SPACE 102400
+#define DEFAULT_AUDIO_FRAME_WAIT_TIME 20000
+
+/*video param*/
+#define DEFAULT_VIDEO_FRAME_WAIT_TIME  200000
+
+
+
+#define MM_STREAMRECORDER_DEFAULT_INI \
+" \
+[general]\n\
+\n\
+retrialcount =10\n\
+\n\
+minimum frame =5\n\
+\n\
+reset pause time = 0 \n\
+\n\
+screen record =0 \n\
+\n\
+convert output buffer num =6\n\
+\n\
+[encodebin]\n\
+\n\
+encsink bin profile = 0 \n\
+\n\
+encsink source auto audio resample = 0\n\
+\n\
+encsink source auto audio colorsapce = 0 \n\
+\n\
+encsink source auto audio convert =1\n\
+\n\
+encsink source use video toggle = 1\n\
+\n\
+[pipeline]\n\
+\n\
+encsink bin source = xvimagesrc\n\
+\n\
+name of audio src \n\
+\n\
+h264 encoder = omx_h264enc\n\
+\n\
+h263 encoder = omx_h263enc\n\
+\n\
+mpeg4 encoder = omx_mpeg4enc\n\
+\n\
+name of audio encoder =savsenc_aac\n\
+\n\
+name of 3GP muxer =ffmux_3gp\n\
+\n\
+use parser= \n\
+\n\
+name of MP4 muxer =ffmux_mp4\n\
+\n\
+name of video converter\n\
+\n\
+name of sink = filesink \n\
+\n\
+[video param]\n\
+\n\
+video frame wait time = 200000\n\
+\n\
+[audio param]\n\
+\n\
+audio frame minimum space = 102400\n\
+\n\
+audio frame wait time = 20000\n\
+\n\
+"
+
+int
+ _mm_streamrecorder_ini_load(mm_streamrecorder_ini_t * ini);
+
+int
+ _mm_streamrecorder_ini_unload(mm_streamrecorder_ini_t * ini);
+
+#ifdef __cplusplus
+}
+#endif
+#endif
