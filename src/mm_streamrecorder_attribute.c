@@ -558,7 +558,7 @@ int _mmstreamrecorder_get_audio_codec_format(MMHandleType handle, const char *na
 	else if (!strcmp(name, "AAC"))
 		codec_index = MM_AUDIO_CODEC_AAC;
 	else if (!strcmp(name, "PCM"))
-		codec_index = MM_AUDIO_CODEC_PCM;
+		codec_index = MM_AUDIO_CODEC_WAVE;
 	else if (!strcmp(name, "VORBIS"))
 		codec_index = MM_AUDIO_CODEC_VORBIS;
 

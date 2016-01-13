@@ -420,11 +420,6 @@ gboolean _mmstreamrecorder_remove_message_all(MMHandleType handle)
 		hstreamrecorder->msg_data = NULL;
 	}
 
-	/* remove idle function for playing capture sound */
-	do {
-		ret = g_idle_remove_by_data(hstreamrecorder);
-		_mmstreamrec_dbg_log("remove idle function for playing capture sound. ret[%d]", ret);
-	} while (ret);
 
 	_MMSTREAMRECORDER_UNLOCK(handle);
 
