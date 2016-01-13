@@ -502,8 +502,9 @@ int _mmstreamrecorder_create_encodesink_bin(MMHandleType handle, MMStreamRecorde
 			break;
 		}
 		_MMSTREAMRECORDER_ENCODEBIN_ELMGET(sc, _MMSTREAMRECORDER_ENCSINK_VENC, "video-encode", err);
-		/* _mmstreamrec_dbg_err(" hyuntae log = %p sc->encode_element[_MMSTREAMRECORDER_ENCSINK_VENC].gst = %p" ,sc, sc->encode_element[_MMSTREAMRECORDER_ENCSINK_VENC].gst); */
 
+		MMSTREAMRECORDER_G_OBJECT_SET(sc->encode_element[_MMSTREAMRECORDER_ENCSINK_VENC].gst, "compliance", -2);
+		/* _mmstreamrec_dbg_err(" hyuntae log = %p sc->encode_element[_MMSTREAMRECORDER_ENCSINK_VENC].gst = %p" ,sc, sc->encode_element[_MMSTREAMRECORDER_ENCSINK_VENC].gst); */
 
 		/* set color converter size */
 		MMSTREAMRECORDER_G_OBJECT_SET(sc->encode_element[_MMSTREAMRECORDER_ENCSINK_ENCBIN].gst, "vconv-name", hstreamrecorder->ini.name_of_encsink_bin_video_converter);
