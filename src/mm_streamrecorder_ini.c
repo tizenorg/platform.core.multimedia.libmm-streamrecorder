@@ -213,43 +213,43 @@ int _mm_streamrecorder_ini_load(mm_streamrecorder_ini_t *ini)
 	iniparser_freedict(dict);
 
 	/* dump structure */
-	_mmstreamrec_dbg_log("Stream Recorder initial settings.......................................\n");
+	_mmstreamrec_dbg_log("[Stream Recorder initial setting][Start]");
 
 	/* general */
-	_mmstreamrec_dbg_log("encsink_src_islive : %d\n", ini->encsink_src_islive);
-	_mmstreamrec_dbg_log("retrial_count : %d\n", ini->retrial_count);
-	_mmstreamrec_dbg_log("minimum_frame : %d\n", ini->minimum_frame);
-	_mmstreamrec_dbg_log("convert_output_buffer_num : %d\n", ini->convert_output_buffer_num);
-	_mmstreamrec_dbg_log("reset_pause_time : %d\n", ini->reset_pause_time);
-	_mmstreamrec_dbg_log("screen_record : %d\n", ini->screen_record);
+	_mmstreamrec_dbg_log("encsink_src_islive : %d", ini->encsink_src_islive);
+	_mmstreamrec_dbg_log("retrial_count : %d", ini->retrial_count);
+	_mmstreamrec_dbg_log("minimum_frame : %d", ini->minimum_frame);
+	_mmstreamrec_dbg_log("convert_output_buffer_num : %d", ini->convert_output_buffer_num);
+	_mmstreamrec_dbg_log("reset_pause_time : %d", ini->reset_pause_time);
+	_mmstreamrec_dbg_log("screen_record : %d", ini->screen_record);
 
 	/*encodebin */
-	_mmstreamrec_dbg_log("encode bin profile : %d\n", ini->encsink_bin_profile);
-	_mmstreamrec_dbg_log("encode bin auto audio resample property  : %d\n", ini->encsink_bin_auto_audio_resample);
-	_mmstreamrec_dbg_log("encode bin auto colorspace property : %d\n", ini->encsink_bin_auto_colorspace);
-	_mmstreamrec_dbg_log("encode bin use video toggle property : %d\n", ini->encsink_bin_use_video_toggle);
-	_mmstreamrec_dbg_log("encode bin auto audio convert property : %d\n", ini->encsink_bin_auto_audio_convert);
+	_mmstreamrec_dbg_log("encode bin profile : %d", ini->encsink_bin_profile);
+	_mmstreamrec_dbg_log("encode bin auto audio resample property  : %d", ini->encsink_bin_auto_audio_resample);
+	_mmstreamrec_dbg_log("encode bin auto colorspace property : %d", ini->encsink_bin_auto_colorspace);
+	_mmstreamrec_dbg_log("encode bin use video toggle property : %d", ini->encsink_bin_use_video_toggle);
+	_mmstreamrec_dbg_log("encode bin auto audio convert property : %d", ini->encsink_bin_auto_audio_convert);
 
 	/* pipeline */
-	_mmstreamrec_dbg_log("name_of_encodebin_source : %s\n", ini->name_of_encsink_src);
-	_mmstreamrec_dbg_log("name_of_audio_source : %s\n", ini->name_of_audio_src);
-	_mmstreamrec_dbg_log("name_of_h264_video_encoder : %s\n", ini->h264_video_encoder);
-	_mmstreamrec_dbg_log("name_of_h263_video_encoder : %s\n", ini->h263_video_encoder);
-	_mmstreamrec_dbg_log("name_of_mpeg4_video_encoder : %s\n", ini->mpeg4_video_encoder);
-	_mmstreamrec_dbg_log("name_of_audio_encoder : %s\n", ini->name_of_encsink_bin_audio_encoder);
-	_mmstreamrec_dbg_log("name_of_video_converter : %s\n", ini->name_of_encsink_bin_video_converter);
-	_mmstreamrec_dbg_log("name_of_3GP_muxer : %s\n", ini->name_of_encsink_bin_3GPMUXER);
-	_mmstreamrec_dbg_log("name_of_MP4_muxer : %s\n", ini->name_of_encsink_bin_MP4MUXER);
-	_mmstreamrec_dbg_log("name_of_sink : %s\n", ini->name_of_encsink_sink);
+	_mmstreamrec_dbg_log("name_of_encodebin_source : %s", ini->name_of_encsink_src);
+	_mmstreamrec_dbg_log("name_of_audio_source : %s", ini->name_of_audio_src);
+	_mmstreamrec_dbg_log("name_of_h264_video_encoder : %s", ini->h264_video_encoder);
+	_mmstreamrec_dbg_log("name_of_h263_video_encoder : %s", ini->h263_video_encoder);
+	_mmstreamrec_dbg_log("name_of_mpeg4_video_encoder : %s", ini->mpeg4_video_encoder);
+	_mmstreamrec_dbg_log("name_of_audio_encoder : %s", ini->name_of_encsink_bin_audio_encoder);
+	_mmstreamrec_dbg_log("name_of_video_converter : %s", ini->name_of_encsink_bin_video_converter);
+	_mmstreamrec_dbg_log("name_of_3GP_muxer : %s", ini->name_of_encsink_bin_3GPMUXER);
+	_mmstreamrec_dbg_log("name_of_MP4_muxer : %s", ini->name_of_encsink_bin_MP4MUXER);
+	_mmstreamrec_dbg_log("name_of_sink : %s", ini->name_of_encsink_sink);
 
 	/* audio parameter */
-	_mmstreamrec_dbg_log("audio_frame_minimum_space : %d\n", ini->audio_frame_minimum_space);
-	_mmstreamrec_dbg_log("audio_frame_wait_time : %d\n", ini->audio_frame_wait_time);
+	_mmstreamrec_dbg_log("audio_frame_minimum_space : %d", ini->audio_frame_minimum_space);
+	_mmstreamrec_dbg_log("audio_frame_wait_time : %d", ini->audio_frame_wait_time);
 
 	/* video parameter */
-	_mmstreamrec_dbg_log("video_frame_wait_time : %d\n", ini->video_frame_wait_time);
+	_mmstreamrec_dbg_log("video_frame_wait_time : %d", ini->video_frame_wait_time);
 
-	_mmstreamrec_dbg_log("---------------------------------------------------\n");
+	_mmstreamrec_dbg_log("[Stream Recorder initial setting][End]");
 
 	loaded = TRUE;
 
