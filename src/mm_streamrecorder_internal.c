@@ -156,7 +156,7 @@ void _mmstreamrecorder_set_state(MMHandleType handle, int state)
 	mmf_streamrecorder_t *streamrecorder = MMF_STREAMRECORDER(handle);
 	_MMStreamRecorderMsgItem msg;
 
-	mmf_return_val_if_fail(streamrecorder, MM_ERROR_STREAMRECORDER_INVALID_ARGUMENT);
+	mmf_return_if_fail(streamrecorder);
 
 	/*_mmstreamrec_dbg_log("");*/
 
