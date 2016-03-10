@@ -385,6 +385,16 @@ gboolean _mmstreamrecorder_send_message(MMHandleType handle, _MMStreamRecorderMs
 
 	_MMSTREAMRECORDER_UNLOCK(handle);
 
+	/* release allocated memory */
+	if (data->id == MM_MESSAGE_STREAMRECORDER_VIDEO_CAPTURED ||
+		data->id == MM_MESSAGE_STREAMRECORDER_AUDIO_CAPTURED) {
+		MMStreamRecordingReport *report = (MMStreamRecordingReport *)data->param.data;
+		if (report) {
+			SAFE_FREE(report->recording_filename);
+			data->param.data = NULL;
+		}
+		SAFE_FREE(report);
+	}
 	return TRUE;
 }
 
