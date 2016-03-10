@@ -647,7 +647,7 @@ int _mmstreamrecorder_create_encodesink_bin(MMHandleType handle, MMStreamRecorde
 	else
 		info->max_time = ((guint64) imax_time) * 1000;	/* to millisecond */
 
-	finfo->filename = strdup(temp_filename);
+	finfo->filename = g_strdup(temp_filename);
 	if (!finfo->filename) {
 		_mmstreamrec_dbg_err("strdup was failed");
 		return err;
@@ -1293,11 +1293,11 @@ int _mmstreamrecorder_video_handle_eos(MMHandleType handle)
 
 	/* Send recording report to application */
 	msg.id = MM_MESSAGE_STREAMRECORDER_VIDEO_CAPTURED;
-	report = (MMStreamRecordingReport *) malloc(sizeof(MMStreamRecordingReport));
+	report = (MMStreamRecordingReport *) g_malloc(sizeof(MMStreamRecordingReport));
 	if (!report) {
 		_mmstreamrec_dbg_err("Recording report fail(%s). Out of memory.", finfo->filename);
 	} else {
-		report->recording_filename = strdup(finfo->filename);
+		report->recording_filename = g_strdup(finfo->filename);
 		msg.param.data = report;
 		msg.param.code = 1;
 		_mmstreamrecorder_send_message((MMHandleType) hstreamrecorder, &msg);
@@ -1597,7 +1597,7 @@ int _mmstreamrecorder_audio_command(MMHandleType handle, int command)
 				goto _ERR_STREAMRECORDER_AUDIO_COMMAND;
 			}
 
-			finfo->filename = strdup(temp_filename);
+			finfo->filename = g_strdup(temp_filename);
 			if (!finfo->filename) {
 				_mmstreamrec_dbg_err("STRDUP was failed");
 				goto _ERR_STREAMRECORDER_AUDIO_COMMAND;
@@ -1798,7 +1798,7 @@ int _mmstreamrecorder_audio_handle_eos(MMHandleType handle)
 
 	/* Send recording report message to application */
 	msg.id = MM_MESSAGE_STREAMRECORDER_AUDIO_CAPTURED;
-	report = (MMStreamRecordingReport *) malloc(sizeof(MMStreamRecordingReport));
+	report = (MMStreamRecordingReport *) g_malloc(sizeof(MMStreamRecordingReport));
 	if (!report) {
 		_mmstreamrec_dbg_err("Recording report fail(%s). Out of memory.", finfo->filename);
 		return FALSE;
