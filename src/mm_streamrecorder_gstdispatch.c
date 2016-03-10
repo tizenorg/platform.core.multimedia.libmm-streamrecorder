@@ -297,7 +297,10 @@ gboolean _mmstreamrecorder_msg_callback(void *data)
 	mmf_return_val_if_fail(item, FALSE);
 
 	hstreamrecorder = MMF_STREAMRECORDER(item->handle);
-	mmf_return_val_if_fail(hstreamrecorder, FALSE);
+	if(hstreamrecorder == NULL) {
+		_mmstreamrec_dbg_warn("msg id:0x%x, item:%p, handle is NULL", item->id, item);
+		goto MSG_CALLBACK_DONE;
+	}
 
 	/* _mmstreamrec_dbg_log("msg id:%x, msg_cb:%p, msg_data:%p, item:%p", item->id, hstreamrecorder->msg_cb, hstreamrecorder->msg_data, item); */
 	_MMSTREAMRECORDER_LOCK_MESSAGE_CALLBACK(hstreamrecorder);
@@ -311,9 +314,21 @@ gboolean _mmstreamrecorder_msg_callback(void *data)
 	if (hstreamrecorder->msg_data)
 		hstreamrecorder->msg_data = g_list_remove(hstreamrecorder->msg_data, item);
 
-	free(item);
-	item = NULL;
 	_MMSTREAMRECORDER_UNLOCK((MMHandleType) hstreamrecorder);
+
+MSG_CALLBACK_DONE:
+	/* release allocated memory */
+	if (item->id == MM_MESSAGE_STREAMRECORDER_VIDEO_CAPTURED ||
+		item->id == MM_MESSAGE_STREAMRECORDER_AUDIO_CAPTURED) {
+		MMStreamRecordingReport *report = (MMStreamRecordingReport *)item->param.data;
+		if (report) {
+			SAFE_FREE(report->recording_filename);
+			item->param.data = NULL;
+		}
+		SAFE_FREE(report);
+	}
+	SAFE_FREE(item);
+
 	/* For not being called again */
 	return FALSE;
 }
