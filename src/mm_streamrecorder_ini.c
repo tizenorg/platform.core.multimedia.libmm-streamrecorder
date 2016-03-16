@@ -316,10 +316,10 @@ void __mm_streamrecorder_ini_check_status(void)
 	debug_fenter();
 
 	if (g_stat(MM_STREAMRECORDER_INI_DEFAULT_PATH, &ini_buff) < 0) {
-		_mmstreamrec_dbg_err("failed to get mmfw_wfd_sink ini status\n");
+		_mmstreamrec_dbg_err("failed to get mmfw_streamrecorder.ini status\n");
 	} else {
 		if (ini_buff.st_size < 5) {
-			_mmstreamrec_dbg_err("mmfw_wfd_sink.ini file size=%d, Corrupted! So, Removed\n", (int)ini_buff.st_size);
+			_mmstreamrec_dbg_err("mmfw_streamrecorder.ini file size=%d, Corrupted! So, Removed\n", (int)ini_buff.st_size);
 			g_remove(MM_STREAMRECORDER_INI_DEFAULT_PATH);
 		}
 	}

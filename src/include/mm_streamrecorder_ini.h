@@ -31,7 +31,7 @@
 extern "C" {
 #endif
 
-#define MM_STREAMRECORDER_INI_DEFAULT_PATH	"/usr/etc/mmfw_streamrecorder.ini"
+#define MM_STREAMRECORDER_INI_DEFAULT_PATH	SYSCONFDIR"/multimedia/mmfw_streamrecorder.ini"
 
 #define STREAMRECORDER_INI_MAX_STRLEN	256
 #define STREAMRECORDER_INI_MAX_ELEMENT	10

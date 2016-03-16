@@ -1,6 +1,6 @@
 Name:       libmm-streamrecorder
 Summary:    Media Stream Recorder library
-Version:    0.0.4
+Version:    0.0.5
 Release:    0
 Group:      Multimedia/Other
 License:    Apache-2.0
@@ -35,6 +35,7 @@ Media Stream Recorder development library
 %build
 #export CFLAGS+=" -DGST_EXT_TIME_ANALYSIS"
 export CFLAGS+=" -Wall -Wextra -Wno-array-bounds -Wno-empty-body -Wno-ignored-qualifiers -Wno-unused-parameter -Wshadow -Wwrite-strings -Wswitch-default -Wno-unused-but-set-parameter -Wno-unused-but-set-variable"
+export CFLAGS+=" -DSYSCONFDIR=\\\"%{_sysconfdir}\\\""
 ./autogen.sh
 %configure --disable-static
 make %{?jobs:-j%jobs}
