@@ -127,10 +127,6 @@ enum {
 	}\
 }
 
-#if 0
-#define MM_STREAMRECORDER_INI_DEFAULT_PATH	"/usr/etc/mmfw_transcode.ini"
-#define STREAMRECORDER_INI_MAX_STRLEN	100
-#endif
 /*=======================================================================================
 | ENUM DEFINITIONS									|
 ========================================================================================*/
