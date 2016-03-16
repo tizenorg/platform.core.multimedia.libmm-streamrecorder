@@ -686,16 +686,10 @@ static void setting_menu(gchar buf)
 	int width_count = 0;
 	int height_count = 0;
 	int i = 0;
-	int count = 0;
-	int value = 0;
-	int* array = NULL;
 	int *width_array = NULL;
 	int *height_array = NULL;
-	char *err_attr_name = NULL;
 	str_xypair_t input_pair;
-	char filename[100];
 	int err = MM_ERROR_NONE;
-	int x = 0, y = 0, width = 0, height = 0;
 
 	if (hstreamrecorder->mode == MODE_VIDEO_CAPTURE) {
 		switch (buf) {
@@ -992,17 +986,11 @@ static gboolean init(int type)
 
 	char *err_attr_name = NULL;
 	int video_codec = MM_VIDEO_CODEC_INVALID;
-	int audio_codec = MM_AUDIO_CODEC_INVALID;
 	int file_format = MM_FILE_FORMAT_INVALID;
-	int audio_enc = MM_AUDIO_CODEC_INVALID;
-	int channel = 0;
 	int v_bitrate = 0;
-	int a_bitrate = 0;
 	int video_width = 0;
 	int video_height = 0;
 	int video_fps = 0;
-	int audio_samplerate = 0;
-	int audio_src_format = 0;
 	int video_src_format = 0;
 	int rec_mode = 0;
 	const char *filename = "/opt/usr/media/test.mp4";
@@ -1020,17 +1008,17 @@ static gboolean init(int type)
 	*=================================================================================*/
 	if (type == MODE_VIDEO_CAPTURE) {
 		video_codec = MM_VIDEO_CODEC_MPEG4;
-		/*audio_codec = MM_AUDIO_CODEC_AAC;*/
+		/* audio_codec = MM_AUDIO_CODEC_AAC; */
 		file_format = MM_FILE_FORMAT_MP4;
-		/*audio_enc = MM_AUDIO_CODEC_PCM;*/
-		/*channel = 1;
-		v_bitrate = 8000000;
-		/*a_bitrate = 64000;*/
+		/* audio_enc = MM_AUDIO_CODEC_PCM; */
+		/* channel = 1; */
+		/* v_bitrate = 8000000; */
+		/* a_bitrate = 64000; */
 		video_width = 640;
 		video_height = 480;
 		video_fps = 30;
-		/*audio_samplerate = 48000;*/
-		/*audio_src_format = 2;*/
+		/* audio_samplerate = 48000; */
+		/* audio_src_format = 2; */
 		rec_mode = 0;
 		video_src_format = MM_STREAMRECORDER_INPUT_FORMAT_NV12;
 		mm_streamrecorder_set_attributes((MMHandleType)str_handle, &err_attr_name,
