@@ -46,10 +46,13 @@
 /*---------------------------------------------------------------------------------------
 |    LOCAL FUNCTION PROTOTYPES:								|
 ---------------------------------------------------------------------------------------*/
+void _mmstreamrecorder_set_state(MMHandleType handle, int state);
+
 
 /*=======================================================================================
 |  FUNCTION DEFINITIONS									|
 =======================================================================================*/
+
 /*---------------------------------------------------------------------------------------
 |    GLOBAL FUNCTION DEFINITIONS:							|
 ---------------------------------------------------------------------------------------*/
@@ -375,7 +378,6 @@ int _mmstreamrecorder_record(MMHandleType handle)
 	return MM_ERROR_NONE;
 
  _ERR_STREAMRECORDER_CMD:
- _ERR_STREAMRECORDER_CMD_PRECON:
 	/* check internal error of gstreamer */
 	if (hstreamrecorder->sub_context->error_code != MM_ERROR_NONE) {
 		ret = hstreamrecorder->sub_context->error_code;
@@ -442,7 +444,7 @@ int _mmstreamrecorder_push_stream_buffer(MMHandleType handle, MMStreamRecorderSt
 		ret = _mmstreamrecorder_push_videostream_buffer(handle, timestamp, stream_buffer->buffer, size);
 	} else if (streamtype == MM_STREAM_TYPE_AUDIO) {
 		gst_buffer_append_memory(stream_buffer->buffer, gst_memory_new_wrapped(GST_MEMORY_FLAG_READONLY,
-								buffer, size, 0, buffer, stream_buffer, _mmstreamrecorder_buffer_destroy));
+								buffer, size, 0, size, stream_buffer, _mmstreamrecorder_buffer_destroy));
 		ret = _mmstreamrecorder_push_audiostream_buffer(handle, timestamp, stream_buffer->buffer, size);
 	} else {
 		gst_buffer_unmap(stream_buffer->buffer, &map);

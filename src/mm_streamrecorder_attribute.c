@@ -277,6 +277,9 @@ mm_streamrecorder_attr_construct_info stream_attrs_const_info[] = {
 /*-----------------------------------------------------------------------
 |    LOCAL FUNCTION PROTOTYPES:						|
 -----------------------------------------------------------------------*/
+int _mmstreamrecorder_get_available_format(MMHandleType handle, int type, int ** format);
+
+
 /* STATIC INTERNAL FUNCTION */
 static int __mmstreamrecorder_set_conf_to_valid_info(MMHandleType handle)
 {
@@ -692,7 +695,7 @@ _mmstreamrecorder_get_available_format(MMHandleType handle, int type, int ** for
 	int count = 0;
 	int i = 0;
 	int fmt = 0;
-	const char *name = NULL;
+	char *name = NULL;
 
 	mmf_return_val_if_fail(hstreamrecorder, 0);
 

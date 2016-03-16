@@ -1271,8 +1271,9 @@ int _mmstreamrecorder_video_handle_eos(MMHandleType handle)
 	sc = MMF_STREAMRECORDER_SUBCONTEXT(handle);
 	mmf_return_val_if_fail(sc, FALSE);
 	mmf_return_val_if_fail(sc->info_video, FALSE);
-	if (sc->audio_enable == TRUE)
+	if (sc->audio_enable == TRUE) {
 		mmf_return_val_if_fail(sc->info_audio, FALSE);
+	}
 
 	mmf_return_val_if_fail(sc->info_file, FALSE);
 
