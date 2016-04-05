@@ -43,7 +43,7 @@ mm_streamrecorder_attr_construct_info stream_attrs_const_info[] = {
 	/* 0 */
 	{
 	 MM_STR_VIDEO_BUFFER_TYPE,	/* ID */
-	 "videobuffer-type",		/* Name */
+	 (char *)"videobuffer-type",		/* Name */
 	 MMF_VALUE_TYPE_INT,		/* Type */
 	 MM_ATTRS_FLAG_RW,			/* Flag */
 	 {(void *)MM_STREAMRECORDER_VIDEO_TYPE_TBM_BO},	/* Default value */
@@ -54,7 +54,7 @@ mm_streamrecorder_attr_construct_info stream_attrs_const_info[] = {
 	 },
 	/* 1  */
 	{MM_STR_VIDEO_FORMAT,
-	 "videosource-format",
+	 (char *)"videosource-format",
 	 MMF_VALUE_TYPE_INT,
 	 MM_ATTRS_FLAG_RW,
 	 {(void *)MM_STREAMRECORDER_INPUT_FORMAT_NV12},
@@ -66,7 +66,7 @@ mm_streamrecorder_attr_construct_info stream_attrs_const_info[] = {
 	/* 2  */
 	{
 	 MM_STR_VIDEO_FRAMERATE,
-	 "video-framerate",
+	 (char *)"video-framerate",
 	 MMF_VALUE_TYPE_INT,
 	 MM_ATTRS_FLAG_RW,
 	 {(void *)0},
@@ -78,7 +78,7 @@ mm_streamrecorder_attr_construct_info stream_attrs_const_info[] = {
 	/* 3  */
 	{
 	 MM_STR_VIDEO_ENCODER_BITRATE,
-	 "video-bitrate",
+	 (char *)"video-bitrate",
 	 MMF_VALUE_TYPE_INT,
 	 MM_ATTRS_FLAG_RW,
 	 {(void *)0},
@@ -90,7 +90,7 @@ mm_streamrecorder_attr_construct_info stream_attrs_const_info[] = {
 	/* 4  */
 	{
 	 MM_STR_VIDEO_RESOLUTION_WIDTH,
-	 "video-resolution-width",
+	 (char *)"video-resolution-width",
 	 MMF_VALUE_TYPE_INT,
 	 MM_ATTRS_FLAG_RW,
 	 {(void *)0},
@@ -102,7 +102,7 @@ mm_streamrecorder_attr_construct_info stream_attrs_const_info[] = {
 	/* 5  */
 	{
 	 MM_STR_VIDEO_RESOLUTION_HEIGHT,
-	 "video-resolution-height",
+	 (char *)"video-resolution-height",
 	 MMF_VALUE_TYPE_INT,
 	 MM_ATTRS_FLAG_RW,
 	 {(void *)0},
@@ -114,7 +114,7 @@ mm_streamrecorder_attr_construct_info stream_attrs_const_info[] = {
 	/* 6  */
 	{
 	 MM_STR_AUDIO_FORMAT,
-	 "audio-source-format",
+	 (char *)"audio-source-format",
 	 MMF_VALUE_TYPE_INT,
 	 MM_ATTRS_FLAG_RW,
 	 {(void *)MM_STREAMRECORDER_AUDIO_FORMAT_PCM_S16_LE},
@@ -126,7 +126,7 @@ mm_streamrecorder_attr_construct_info stream_attrs_const_info[] = {
 	/* 7  */
 	{
 	 MM_STR_AUDIO_ENCODER_BITRATE,
-	 "audio-bitrate",
+	 (char *)"audio-bitrate",
 	 MMF_VALUE_TYPE_INT,
 	 MM_ATTRS_FLAG_RW,
 	 {(void *)128000},
@@ -138,7 +138,7 @@ mm_streamrecorder_attr_construct_info stream_attrs_const_info[] = {
 	/* 8  */
 	{
 	 MM_STR_AUDIO_SAMPLERATE,
-	 "audio-samplerate",
+	 (char *)"audio-samplerate",
 	 MMF_VALUE_TYPE_INT,
 	 MM_ATTRS_FLAG_RW,
 	 {(void *)0},
@@ -150,7 +150,7 @@ mm_streamrecorder_attr_construct_info stream_attrs_const_info[] = {
 	/* 9  */
 	{
 	 MM_STR_VIDEO_ENCODER,
-	 "video-encoder",
+	 (char *)"video-encoder",
 	 MMF_VALUE_TYPE_INT,
 	 MM_ATTRS_FLAG_RW,
 	 {(void *)0},
@@ -162,7 +162,7 @@ mm_streamrecorder_attr_construct_info stream_attrs_const_info[] = {
 	/* 10  */
 	{
 	 MM_STR_AUDIO_ENCODER,
-	 "audio-encoder",
+	 (char *)"audio-encoder",
 	 MMF_VALUE_TYPE_INT,
 	 MM_ATTRS_FLAG_RW,
 	 {(void *)0},
@@ -174,7 +174,7 @@ mm_streamrecorder_attr_construct_info stream_attrs_const_info[] = {
 	/* 11  */
 	{
 	 MM_STR_AUDIO_CHENNEL_COUNT,
-	 "audio-channel-count",
+	 (char *)"audio-channel-count",
 	 MMF_VALUE_TYPE_INT,
 	 MM_ATTRS_FLAG_RW,
 	 {(void *)2},
@@ -186,7 +186,7 @@ mm_streamrecorder_attr_construct_info stream_attrs_const_info[] = {
 	/* 12  */
 	{
 	 MM_STR_FILE_FORMAT,
-	 "file-format",
+	 (char *)"file-format",
 	 MMF_VALUE_TYPE_INT,
 	 MM_ATTRS_FLAG_RW,
 	 {(void *)0},
@@ -198,7 +198,7 @@ mm_streamrecorder_attr_construct_info stream_attrs_const_info[] = {
 	/* 13  */
 	{
 	 MM_STR_TARGET_FILE_NAME,
-	 "filename",
+	 (char *)"filename",
 	 MMF_VALUE_TYPE_STRING,
 	 MM_ATTRS_FLAG_RW,
 	 {NULL},
@@ -210,7 +210,7 @@ mm_streamrecorder_attr_construct_info stream_attrs_const_info[] = {
 	/* 14  */
 	{
 	 MM_STR_VIDEO_ENABLE,
-	 "video-enable",
+	 (char *)"video-enable",
 	 MMF_VALUE_TYPE_INT,
 	 MM_ATTRS_FLAG_RW,
 	 {(void *)FALSE},
@@ -222,7 +222,7 @@ mm_streamrecorder_attr_construct_info stream_attrs_const_info[] = {
 	/* 15  */
 	{
 	 MM_STR_AUDIO_ENABLE,
-	 "audio-enable",
+	 (char *)"audio-enable",
 	 MMF_VALUE_TYPE_INT,
 	 MM_ATTRS_FLAG_RW,
 	 {(void *)FALSE},
@@ -234,7 +234,7 @@ mm_streamrecorder_attr_construct_info stream_attrs_const_info[] = {
 	/* 16 */
 	{
 	 MM_STR_MODE,
-	 "recorder-mode",
+	 (char *)"recorder-mode",
 	 MMF_VALUE_TYPE_INT,
 	 MM_ATTRS_FLAG_RW,
 	 {(void *)MM_STREAMRECORDER_MODE_MEDIABUFFER},
@@ -246,7 +246,7 @@ mm_streamrecorder_attr_construct_info stream_attrs_const_info[] = {
 	/*17*/
 	{
 	 MM_STR_TARGET_MAX_SIZE,
-	 "target-max-size",
+	 (char *)"target-max-size",
 	 MMF_VALUE_TYPE_INT,
 	 MM_ATTRS_FLAG_RW,
 	 {(void *)0},
@@ -258,7 +258,7 @@ mm_streamrecorder_attr_construct_info stream_attrs_const_info[] = {
 	/*18*/
 	{
 	 MM_STR_TARGET_TIME_LIMIT,
-	 "target-time-limit",
+	 (char *)"target-time-limit",
 	 MMF_VALUE_TYPE_INT,
 	 MM_ATTRS_FLAG_RW,
 	 {(void *)0},
@@ -1148,9 +1148,4 @@ bool _mmstreamrecorder_commit_audio_channel(MMHandleType handle, int attr_idx, c
 	info->iChannels = value->value.i_val;
 
 	return TRUE;
-}
-
-int mm_streamrecorder_get_attribute_info(MMHandleType streamrecorder, const char *attribute_name, MMStreamRecorderAttrsInfo * info)
-{
-	return _mmstreamrecorder_get_attribute_info(streamrecorder, attribute_name, info);
 }

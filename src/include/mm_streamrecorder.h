@@ -613,6 +613,26 @@ int mm_streamrecorder_get_attributes(MMHandleType streamrecorder, char **err_att
 int mm_streamrecorder_set_attributes(MMHandleType streamrecorder, char **err_attr_name, const char *attribute_name, ...) G_GNUC_NULL_TERMINATED;
 
 /**
+ *    mm_streamrecorder_get_attribute_info:\n
+ *  Get detail information of the attribute. To manager attributes, an user may want to know the exact character of the attribute,
+ *  such as type, flag, and validity. This is the function to provide such information.
+ *  Depending on the 'validity_type', validity union would be different. To know about the type of union, please refer 'MMStreamRecorderAttrsInfo'.
+ *
+ *	@param[in]	streamrecorder	Specifies the streamrecorder  handle.
+ *	@param[in]	attribute_name	attribute name that user want to get information.
+ *	@param[out]	info		a structure that holds information related with the attribute.
+ *	@return		This function returns zero(MM_ERROR_NONE) on success, or negative value with error code.\n
+ *			Please refer 'mm_error.h' to know the exact meaning of the error.
+ *	@pre		None
+ *	@post		None
+ *	@remarks	If the function succeeds, 'info' holds detail information about the attribute, such as type,
+ *			flag, validity_type, validity_values, and default values.
+ *	@see		mm_streamrecorder_get_attributes, mm_streamrecorder_set_attributes
+ */
+
+int mm_streamrecorder_get_attribute_info(MMHandleType streamrecorder, const char *attribute_name, MMStreamRecorderAttrsInfo *info);
+
+/**
  *    mm_streamrecorder_get_state:\n
  *  Get the current state of streamreccorder.
  *  mm_streamrecorderr is working on the base of its state. An user should check the state of mm_streamrecorder before calling its functions.

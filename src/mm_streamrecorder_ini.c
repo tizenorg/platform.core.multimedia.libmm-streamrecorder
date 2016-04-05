@@ -132,11 +132,11 @@ int _mm_streamrecorder_ini_load(mm_streamrecorder_ini_t *ini)
 		ini->video_frame_wait_time = iniparser_getint(dict, "video param:video frame wait time", DEFAULT_VIDEO_FRAME_WAIT_TIME);
 
 		/*supported attribute*/
-		MMSTREAMRECORDER_INI_GET_INT_FROM_LIST(dict, ini->supported_video_width, STREAMRECORDER_ATTRIBUTE_NUM_MAX, "attribute:supported width", DEFAULT_SUPPORTED_WIDTH);
-		MMSTREAMRECORDER_INI_GET_INT_FROM_LIST(dict, ini->supported_video_height, STREAMRECORDER_ATTRIBUTE_NUM_MAX, "attribute:supported height", DEFAULT_SUPPORTED_HEIGHT);
-		__get_element_list(ini, iniparser_getstring(dict, "attribute:supported audio encoders", DEFAULT_SUPPORTED_AUDIO_ENCODERS), KEYWORD_AUDIO_ENCODERS);
-		__get_element_list(ini, iniparser_getstring(dict, "attribute:supported video encoders", DEFAULT_SUPPORTED_VIDEO_ENCODERS), KEYWORD_VIDEO_ENCODERS);
-		__get_element_list(ini, iniparser_getstring(dict, "attribute:supported file formats", DEFAULT_SUPPORTED_FILE_FORMATS), KEYWORD_FILE_FORMATS);
+		MMSTREAMRECORDER_INI_GET_INT_FROM_LIST(dict, ini->supported_video_width, STREAMRECORDER_ATTRIBUTE_NUM_MAX, "attribute:supported width", (char *)DEFAULT_SUPPORTED_WIDTH);
+		MMSTREAMRECORDER_INI_GET_INT_FROM_LIST(dict, ini->supported_video_height, STREAMRECORDER_ATTRIBUTE_NUM_MAX, "attribute:supported height", (char *)DEFAULT_SUPPORTED_HEIGHT);
+		__get_element_list(ini, iniparser_getstring(dict, "attribute:supported audio encoders", (char*)DEFAULT_SUPPORTED_AUDIO_ENCODERS), KEYWORD_AUDIO_ENCODERS);
+		__get_element_list(ini, iniparser_getstring(dict, "attribute:supported video encoders", (char*)DEFAULT_SUPPORTED_VIDEO_ENCODERS), KEYWORD_VIDEO_ENCODERS);
+		__get_element_list(ini, iniparser_getstring(dict, "attribute:supported file formats", (char*)DEFAULT_SUPPORTED_FILE_FORMATS), KEYWORD_FILE_FORMATS);
 
 	} else {					/* if dict is not available just fill the structure with default value */
 		_mmstreamrec_dbg_err("failed to load ini. using hardcoded default\n");
@@ -176,9 +176,9 @@ int _mm_streamrecorder_ini_load(mm_streamrecorder_ini_t *ini)
 		ini->video_frame_wait_time = DEFAULT_VIDEO_FRAME_WAIT_TIME;
 
 		/*supported attributes*/
-		__get_element_list(ini, DEFAULT_SUPPORTED_AUDIO_ENCODERS, KEYWORD_AUDIO_ENCODERS);
-		__get_element_list(ini, DEFAULT_SUPPORTED_VIDEO_ENCODERS, KEYWORD_VIDEO_ENCODERS);
-		__get_element_list(ini, DEFAULT_SUPPORTED_FILE_FORMATS, KEYWORD_FILE_FORMATS);
+		__get_element_list(ini, (char *)DEFAULT_SUPPORTED_AUDIO_ENCODERS, KEYWORD_AUDIO_ENCODERS);
+		__get_element_list(ini, (char *)DEFAULT_SUPPORTED_VIDEO_ENCODERS, KEYWORD_VIDEO_ENCODERS);
+		__get_element_list(ini, (char *)DEFAULT_SUPPORTED_FILE_FORMATS, KEYWORD_FILE_FORMATS);
 	}
 
 	/* free dict as we got our own structure */
