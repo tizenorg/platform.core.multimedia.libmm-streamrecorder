@@ -229,3 +229,8 @@ int mm_streamrecorder_set_attributes(MMHandleType streamrecorder, char **err_att
 
 	return ret;
 }
+
+int mm_streamrecorder_get_attribute_info(MMHandleType streamrecorder, const char *attribute_name, MMStreamRecorderAttrsInfo * info)
+{
+	return _mmstreamrecorder_get_attribute_info(streamrecorder, attribute_name, info);
+}

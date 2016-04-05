@@ -1149,8 +1149,3 @@ bool _mmstreamrecorder_commit_audio_channel(MMHandleType handle, int attr_idx, c
 
 	return TRUE;
 }
-
-int mm_streamrecorder_get_attribute_info(MMHandleType streamrecorder, const char *attribute_name, MMStreamRecorderAttrsInfo * info)
-{
-	return _mmstreamrecorder_get_attribute_info(streamrecorder, attribute_name, info);
-}
