@@ -86,6 +86,11 @@ extern "C" {
 
 #define MMSTR_TARGET_TIME_LIMIT                "target-time-limit"
 
+
+#ifndef EXPORT_API
+#define EXPORT_API
+#endif // EXPORT_API
+
 /*=======================================================================================
 | ENUM DEFINITIONS									|
 ========================================================================================*/
@@ -290,7 +295,7 @@ gboolean initialize_streamrecorder()
  */
 
 //INITIAL GSTREAMER
-int mm_streamrecorder_create(MMHandleType *streamrecorder);
+EXPORT_API int mm_streamrecorder_create(MMHandleType *streamrecorder);
 
 /**
  *    mm_streamrecorder_destroy:\n
@@ -329,7 +334,7 @@ gboolean destroy_streamrecorder()
  */
 
 // DESTROY GSTREAMER
-int mm_streamrecorder_destroy(MMHandleType streamrecorder);
+EXPORT_API int mm_streamrecorder_destroy(MMHandleType streamrecorder);
 
 /**
  *    mm_streamrecorder_realize:\n
@@ -352,7 +357,7 @@ int mm_streamrecorder_destroy(MMHandleType streamrecorder);
  */
 
 // CONSTRUCT PIPLINE
-int mm_streamrecorder_realize(MMHandleType streamrecorder);
+EXPORT_API int mm_streamrecorder_realize(MMHandleType streamrecorder);
 
 /**
  *    mm_streamrecorder_unrealize:\n
@@ -373,7 +378,7 @@ int mm_streamrecorder_realize(MMHandleType streamrecorder);
  */
 
 // DESTROY PIPELINE
-int mm_streamrecorder_unrealize(MMHandleType streamrecorder);
+EXPORT_API int mm_streamrecorder_unrealize(MMHandleType streamrecorder);
 
 /**
  *	mm_streamrecorder_start:\n
@@ -389,7 +394,7 @@ int mm_streamrecorder_unrealize(MMHandleType streamrecorder);
  */
 
 // START ENCODE
-int mm_streamrecorder_record(MMHandleType streamrecorder);
+EXPORT_API int mm_streamrecorder_record(MMHandleType streamrecorder);
 
 /**
  *    mm_streamrecorder_pause:\n
@@ -404,7 +409,7 @@ int mm_streamrecorder_record(MMHandleType streamrecorder);
  *  @remarks    Even though this function is for pausing recording, small amount of buffers could be recorded after pause().
  *          Because the buffers which are existed in the queue were created before pause(), the buffers should be recorded.
  */
-int mm_streamrecorder_pause(MMHandleType streamrecorder);
+EXPORT_API int mm_streamrecorder_pause(MMHandleType streamrecorder);
 
 /**
  *    mm_streamrecorder_stop:\n
@@ -438,11 +443,11 @@ gboolean stop_streamrecorder()
 
  *	@endcode
  */
-int mm_streamrecorder_commit(MMHandleType streamrecorder);
+EXPORT_API int mm_streamrecorder_commit(MMHandleType streamrecorder);
 
-int mm_streamrecorder_cancel(MMHandleType streamrecorder);
+EXPORT_API int mm_streamrecorder_cancel(MMHandleType streamrecorder);
 
-int mm_streamrecorder_push_stream_buffer(MMHandleType streamrecorder, MMStreamRecorderStreamType streamtype, unsigned long timestamp, void *buffer, int size);
+EXPORT_API int mm_streamrecorder_push_stream_buffer(MMHandleType streamrecorder, MMStreamRecorderStreamType streamtype, unsigned long timestamp, void *buffer, int size);
 
 /**
  *    mm_streamrecorder_commit:\n
@@ -490,7 +495,7 @@ gboolean record_and_save_video_file()
 
  *	@endcode
  */
-int mm_streamrecorder_commit(MMHandleType streamrecorder);
+EXPORT_API int mm_streamrecorder_commit(MMHandleType streamrecorder);
 
 /**
  *	mm_streamrecorder_cancel:\n
@@ -535,7 +540,7 @@ gboolean record_and_cancel_video_file()
 
  *	@endcode
  */
-int mm_streamrecorder_cancel(MMHandleType streamrecorder);
+EXPORT_API int mm_streamrecorder_cancel(MMHandleType streamrecorder);
 
 /**
  *    mm_streamrecorder_set_message_callback:\n
@@ -568,7 +573,7 @@ gboolean setting_msg_callback()
 
  *	@endcode
  */
-int mm_streamrecorder_set_message_callback(MMHandleType streamrecorder, MMMessageCallback callback, void *user_data);
+EXPORT_API int mm_streamrecorder_set_message_callback(MMHandleType streamrecorder, MMMessageCallback callback, void *user_data);
 
 /**
  *    mm_streamrecorder_get_attributes:\n
@@ -589,7 +594,7 @@ int mm_streamrecorder_set_message_callback(MMHandleType streamrecorder, MMMessag
  *			ex) mm_streamrecorder_get_attributes(....... , NULL);
  *	@see		mm_streamrecorder_set_attributes
  */
-int mm_streamrecorder_get_attributes(MMHandleType streamrecorder, char **err_attr_name, const char *attribute_name, ...) G_GNUC_NULL_TERMINATED;
+EXPORT_API int mm_streamrecorder_get_attributes(MMHandleType streamrecorder, char **err_attr_name, const char *attribute_name, ...) G_GNUC_NULL_TERMINATED;
 
 /**
  *    mm_streamrecorder_set_attributes:\n
@@ -610,7 +615,7 @@ int mm_streamrecorder_get_attributes(MMHandleType streamrecorder, char **err_att
  *			ex) mm_streamrecorder_set_attributes(....... , NULL);
  *	@see		mm_streamrecorder_get_attributes
  */
-int mm_streamrecorder_set_attributes(MMHandleType streamrecorder, char **err_attr_name, const char *attribute_name, ...) G_GNUC_NULL_TERMINATED;
+EXPORT_API int mm_streamrecorder_set_attributes(MMHandleType streamrecorder, char **err_attr_name, const char *attribute_name, ...) G_GNUC_NULL_TERMINATED;
 
 /**
  *    mm_streamrecorder_get_attribute_info:\n
@@ -630,7 +635,7 @@ int mm_streamrecorder_set_attributes(MMHandleType streamrecorder, char **err_att
  *	@see		mm_streamrecorder_get_attributes, mm_streamrecorder_set_attributes
  */
 
-int mm_streamrecorder_get_attribute_info(MMHandleType streamrecorder, const char *attribute_name, MMStreamRecorderAttrsInfo *info);
+EXPORT_API int mm_streamrecorder_get_attribute_info(MMHandleType streamrecorder, const char *attribute_name, MMStreamRecorderAttrsInfo *info);
 
 /**
  *    mm_streamrecorder_get_state:\n
@@ -647,7 +652,7 @@ int mm_streamrecorder_get_attribute_info(MMHandleType streamrecorder, const char
  *  @post       None
  *  @remarks    None
  */
-int mm_streamrecorder_get_state(MMHandleType streamrecorder, MMStreamRecorderStateType *status);
+EXPORT_API int mm_streamrecorder_get_state(MMHandleType streamrecorder, MMStreamRecorderStateType *status);
 
 /**
 	@}

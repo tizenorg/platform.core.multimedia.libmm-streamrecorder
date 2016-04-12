@@ -34,7 +34,7 @@ Media Stream Recorder development library
 
 %build
 #export CFLAGS+=" -DGST_EXT_TIME_ANALYSIS"
-export CFLAGS+=" -Wall -Wextra -Wno-array-bounds -Wno-empty-body -Wno-ignored-qualifiers -Wno-unused-parameter -Wshadow -Wwrite-strings -Wswitch-default -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -flto "
+export CFLAGS+=" -Wall -Wextra -Wno-array-bounds -Wno-empty-body -Wno-ignored-qualifiers -Wno-unused-parameter -Wshadow -Wwrite-strings -Wswitch-default -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -flto -fvisibility=hidden -DEXPORT_API=\"__attribute__((visibility(\\\"default\\\")))\" "
 export CFLAGS+=" -DSYSCONFDIR=\\\"%{_sysconfdir}\\\""
 ./autogen.sh
 %configure --disable-static
