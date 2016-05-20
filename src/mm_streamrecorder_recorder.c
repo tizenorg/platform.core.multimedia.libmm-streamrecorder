@@ -1843,7 +1843,7 @@ int _mmstreamrecorder_push_videostream_buffer(MMHandleType handle, unsigned long
 {
 	mmf_streamrecorder_t *hstreamrecorder = MMF_STREAMRECORDER(handle);
 	_MMStreamRecorderSubContext *sc = NULL;
-	GstPad *srcpad = NULL;
+	/* GstPad *srcpad = NULL; */
 	GstCaps *srccaps = NULL;
 	char *err_name = NULL;
 	int video_fps = 0;
@@ -1871,12 +1871,16 @@ int _mmstreamrecorder_push_videostream_buffer(MMHandleType handle, unsigned long
 	if (sc->encode_element[_MMSTREAMRECORDER_ENCSINK_SRC].gst) {
 
 		/*_mmstreamrec_dbg_log("Buffer Push start , time stamp %ld",timestamp);*/
-		srcpad = gst_element_get_static_pad(sc->encode_element[_MMSTREAMRECORDER_ENCSINK_SRC].gst, "src");
-		srccaps = gst_pad_get_current_caps(srcpad);
+		/* srcpad = gst_element_get_static_pad(sc->encode_element[_MMSTREAMRECORDER_ENCSINK_SRC].gst, "src"); */
+		/* srccaps = gst_pad_get_current_caps(srcpad); */
 		srccaps = gst_set_videosrcpad_caps(video_src, video_width, video_height, video_fps, 1);
-		gst_app_src_set_caps((GstAppSrc *) sc->encode_element[_MMSTREAMRECORDER_ENCSINK_SRC].gst, srccaps);
-		/*_mmstreamrec_dbg_err("newbuf streamrecorder(%p) ",newbuf);*/
+		if (srccaps) {
+			gst_app_src_set_caps((GstAppSrc *) sc->encode_element[_MMSTREAMRECORDER_ENCSINK_SRC].gst, srccaps);
+			gst_caps_unref(srccaps);
+			srccaps = NULL;
+		}
 
+		/*_mmstreamrec_dbg_err("newbuf streamrecorder(%p) ",newbuf);*/
 		ret = gst_app_src_push_buffer((GstAppSrc *) sc->encode_element[_MMSTREAMRECORDER_ENCSINK_SRC].gst, buffer);
 		if (ret) {
 			_mmstreamrec_dbg_err("video gst_app_src_push_buffer %d", ret);
