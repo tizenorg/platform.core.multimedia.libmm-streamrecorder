@@ -43,7 +43,7 @@ do { \
 	if (str) { \
 		length = strlen(str); \
 		if ((length > 1) && (length < STREAMRECORDER_INI_MAX_STRLEN)) \
-			strncpy(x_item, str, length+1); \
+			strncpy(x_item, str, STREAMRECORDER_INI_MAX_STRLEN-1); \
 		else \
 			strncpy(x_item, x_default, STREAMRECORDER_INI_MAX_STRLEN-1); \
 	} else { \
