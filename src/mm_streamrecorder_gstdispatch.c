@@ -290,6 +290,7 @@ void _mmstreamrecorder_element_release_noti(gpointer data, GObject *where_the_ob
 	return;
 }
 
+#ifdef _MMSTREAMCAMCORDER_ENABLE_IDLE_MESSAGE_CALLBACK
 gboolean _mmstreamrecorder_msg_callback(void *data)
 {
 	_MMStreamRecorderMsgItem *item = (_MMStreamRecorderMsgItem *) data;
@@ -332,6 +333,7 @@ MSG_CALLBACK_DONE:
 	/* For not being called again */
 	return FALSE;
 }
+#endif /* _MMSTREAMCAMCORDER_ENABLE_IDLE_MESSAGE_CALLBACK */
 
 void _mmstreamrecorder_remove_all_handlers(MMHandleType handle, _MMStreamRecorderHandlerCategory category)
 {
@@ -354,7 +356,9 @@ void _mmstreamrecorder_remove_all_handlers(MMHandleType handle, _MMStreamRecorde
 gboolean _mmstreamrecorder_send_message(MMHandleType handle, _MMStreamRecorderMsgItem *data)
 {
 	mmf_streamrecorder_t *hstreamrecorder = MMF_STREAMRECORDER(handle);
+#ifdef _MMSTREAMCAMCORDER_ENABLE_IDLE_MESSAGE_CALLBACK
 	_MMStreamRecorderMsgItem *item = NULL;
+#endif /* _MMSTREAMCAMCORDER_ENABLE_IDLE_MESSAGE_CALLBACK */
 
 	mmf_return_val_if_fail(hstreamrecorder, FALSE);
 	mmf_return_val_if_fail(data, FALSE);
@@ -384,7 +388,7 @@ gboolean _mmstreamrecorder_send_message(MMHandleType handle, _MMStreamRecorderMs
 		data->param.union_type = MM_MSG_UNION_CODE;
 		break;
 	}
-
+#ifdef _MMSTREAMCAMCORDER_ENABLE_IDLE_MESSAGE_CALLBACK
 	item = g_malloc(sizeof(_MMStreamRecorderMsgItem));
 	if (!item)
 		return FALSE;
@@ -399,6 +403,17 @@ gboolean _mmstreamrecorder_send_message(MMHandleType handle, _MMStreamRecorderMs
 	g_idle_add_full(G_PRIORITY_DEFAULT, _mmstreamrecorder_msg_callback, item, NULL);
 
 	_MMSTREAMRECORDER_UNLOCK(handle);
+#else /* _MMSTREAMCAMCORDER_ENABLE_IDLE_MESSAGE_CALLBACK */
+	/* _mmstreamrec_dbg_log("msg id:%x, msg_cb:%p, msg_data:%p", data->id, hstreamrecorder->msg_cb, hstreamrecorder->msg_data); */
+	_MMSTREAMRECORDER_LOCK_MESSAGE_CALLBACK(hstreamrecorder);
+
+	if (hstreamrecorder->msg_cb)
+		hstreamrecorder->msg_cb(data->id, (MMMessageParamType *) (&(data->param)), hstreamrecorder->msg_cb_param);
+	else
+		_mmstreamrec_dbg_log("message callback is NULL. message id %d", data->id);
+
+	_MMSTREAMRECORDER_UNLOCK_MESSAGE_CALLBACK(hstreamrecorder);
+#endif /* _MMSTREAMCAMCORDER_ENABLE_IDLE_MESSAGE_CALLBACK */
 
 	return TRUE;
 }
@@ -406,14 +421,17 @@ gboolean _mmstreamrecorder_send_message(MMHandleType handle, _MMStreamRecorderMs
 gboolean _mmstreamrecorder_remove_message_all(MMHandleType handle)
 {
 	mmf_streamrecorder_t *hstreamrecorder = MMF_STREAMRECORDER(handle);
-	_MMStreamRecorderMsgItem *item = NULL;
 	gboolean ret = TRUE;
+#ifdef _MMSTREAMCAMCORDER_ENABLE_IDLE_MESSAGE_CALLBACK
+	_MMStreamRecorderMsgItem *item = NULL;
 	GList *list = NULL;
+#endif /* _MMSTREAMCAMCORDER_ENABLE_IDLE_MESSAGE_CALLBACK */
 
 	mmf_return_val_if_fail(hstreamrecorder, FALSE);
 
 	_MMSTREAMRECORDER_LOCK(handle);
 
+#ifdef _MMSTREAMCAMCORDER_ENABLE_IDLE_MESSAGE_CALLBACK
 	if (hstreamrecorder->msg_data) {
 		list = hstreamrecorder->msg_data;
 
@@ -435,7 +453,7 @@ gboolean _mmstreamrecorder_remove_message_all(MMHandleType handle)
 		hstreamrecorder->msg_data = NULL;
 	}
 
-
+#endif /* _MMSTREAMCAMCORDER_ENABLE_IDLE_MESSAGE_CALLBACK */
 	_MMSTREAMRECORDER_UNLOCK(handle);
 
 	return ret;
