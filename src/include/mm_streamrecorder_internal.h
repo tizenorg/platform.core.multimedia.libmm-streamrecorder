@@ -256,7 +256,9 @@ typedef struct mmf_streamrecorder {
 	GList *event_probes;				   /**< a list of event probe handle */
 	GList *data_probes;					   /**< a list of data probe handle */
 	GList *signals;						   /**< a list of signal handle */
+#ifdef _MMSTREAMCAMCORDER_ENABLE_IDLE_MESSAGE_CALLBACK
 	GList *msg_data;					   /**< a list of msg data */
+#endif /* _MMSTREAMCAMCORDER_ENABLE_IDLE_MESSAGE_CALLBACK */
 	guint pipeline_cb_event_id;			   /**< Event source ID of pipeline message callback */
 	guint encode_pipeline_cb_event_id;	   /**< Event source ID of encode pipeline message callback */
 

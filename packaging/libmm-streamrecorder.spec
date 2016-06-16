@@ -1,6 +1,6 @@
 Name:       libmm-streamrecorder
 Summary:    Media Stream Recorder library
-Version:    0.0.8
+Version:    0.0.9
 Release:    0
 Group:      Multimedia/Other
 License:    Apache-2.0
