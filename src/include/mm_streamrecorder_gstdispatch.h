@@ -199,7 +199,9 @@ void _mmstreamrecorder_disconnect_signal(MMHandleType handle, _MMStreamRecorderH
 void _mmstreamrecorder_element_release_noti(gpointer data, GObject *where_the_object_was);
 
 /* Message */
+#ifdef _MMSTREAMCAMCORDER_ENABLE_IDLE_MESSAGE_CALLBACK
 gboolean _mmstreamrecorder_msg_callback(void *data);
+#endif /* _MMSTREAMCAMCORDER_ENABLE_IDLE_MESSAGE_CALLBACK */
 gboolean _mmstreamrecorder_send_message(MMHandleType handle, _MMStreamRecorderMsgItem *data);
 gboolean _mmstreamrecorder_remove_message_all(MMHandleType handle);
 
